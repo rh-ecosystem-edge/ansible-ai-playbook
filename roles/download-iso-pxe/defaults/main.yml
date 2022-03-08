@@ -1,0 +1,30 @@
+
+# assited installer URL
+# URL: http://127.0.0.1:8080
+
+
+# Cluster UUID
+# CLUSTER_ID: ""
+
+# ARCH
+ARCH: arm
+
+# Name of the downlaoded ISO
+ISO_NAME: "discovery_image.iso"
+
+# Work dir
+WORKDIR: "/tmp/download-iso-pxe"
+
+### TFTP SERVER
+TFTP_DIR: "/var/lib/tftpboot"
+
+### HTTP SERVER
+HTTP_DIR: "/var/www/html/pxe"
+
+### Mount Point for boot images
+MNT_EFIBOOT: "/mnt/efiboot"
+
+### GRUB HTTP SERVER URL
+### optional set the url for downloading the kernel files
+### default to ansible host IP address.
+# HTTP_URL: ""

@@ -1,0 +1,76 @@
+
+- name: set Assisted-installer URL v2
+  set_fact:
+    API_URL: "{{ URL }}/api/assisted-install/v2"
+  tags: download
+
+- name: Get Cluster status
+  uri:
+    url: "{{ API_URL }}/clusters/{{ CLUSTER_ID }}"
+    method: GET
+    headers: 
+      Accept: application/json
+      Content-Type: application/json
+    follow_redirects: all
+    return_content: yes
+    status_code: "200"
+  tags: download
+  register: _cluster_status
+
+- name: Change cluster status to Adding Hosts
+  uri:
+    url: "{{ API_URL }}/clusters/{{ CLUSTER_ID  }}/actions/allow-add-workers"
+    method: POST
+    headers: 
+      Accept: application/json
+      Content-Type: application/json
+    follow_redirects: all
+    return_content: yes
+    status_code: "202"
+  tags: download
+  when: _cluster_status.json.status != "adding-hosts"
+
+- name: Get infra-env id by cluster id
+  uri:
+    url: "{{ API_URL }}/infra-envs?cluster_id={{ CLUSTER_ID  }}"
+    method: GET
+    headers: 
+      Accept: application/json
+      Content-Type: application/json
+    follow_redirects: all
+    return_content: yes
+    status_code: "200"
+  register: _infraenv_result
+  tags: download
+
+- name: Get Download URL
+  set_fact:
+    INFRAENV_ID: "{{ _infraenv_result.json[0] | json_query('id')  }}"
+  tags: download
+
+- name: Get Day2 download URL
+  uri: 
+    url: "{{ API_URL }}/infra-envs/{{ INFRAENV_ID }}/downloads/image-url"
+    method: GET
+    headers: 
+      Accept: application/json
+      Content-Type: application/json
+    follow_redirects: all
+    return_content: yes
+    status_code: "200"
+  register: _day2_result
+  tags: download
+
+- name: Creating working dir
+  file:
+    path: "{{ WORKDIR }}"
+    state: directory
+    recurse: yes
+  become: true
+  tags: download
+
+- name: Download ISO
+  get_url:
+    url: "{{ _day2_result.json.url }}"
+    dest: "{{ WORKDIR }}/{{ ISO_NAME }}"
+  tags: download

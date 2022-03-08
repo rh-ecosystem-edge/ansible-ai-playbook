@@ -1,0 +1,40 @@
+
+- name: install required packages
+  yum:
+    name:
+      - jq
+      - ipmitool
+      - httpd
+    state: present
+  become: yes
+
+- name: Create HTTP Directory
+  file:
+    path: "{{ HTTP_DIR }}"
+    state: directory
+    owner: apache
+    group: apache
+  become: yes
+
+- name: setup iPXE config
+  template:
+    src: ipxe.j2
+    dest: "{{ HTTP_DIR }}/ipxe"
+  become: yes
+  when: IPXE is true
+
+
+- name: Create HTTP PXE config file
+  template:
+    src: pxeboot.conf.j2
+    dest: /etc/httpd/conf.d/pxeboot.conf
+    owner: apache
+    group: apache
+  become: yes
+
+- name: Restart http Server
+  service:
+    name: httpd
+    state: reloaded
+    enabled: yes
+  become: yes
