@@ -1,0 +1,14 @@
+
+- name: Install services
+  include_tasks: install.yml
+  tags: install
+
+- name: install tftp services
+  include_tasks: tftp.yml
+  tags: install, tftp
+  when: IPXE is false
+
+- name: install DHCP service
+  include_tasks: dhcp.yml
+  tags: dhcp
+  when: DHCP is defined 

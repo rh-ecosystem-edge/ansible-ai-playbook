@@ -1,0 +1,8 @@
+
+- name: Download ISO
+  include_tasks: download.yml
+  tags: download, test
+
+- name: Extract ISO
+  include_tasks: extract.yml
+  tags: extract

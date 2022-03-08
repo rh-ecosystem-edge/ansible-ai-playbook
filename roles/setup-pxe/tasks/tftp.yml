@@ -1,0 +1,33 @@
+- name: install required packages
+  yum:
+    name:
+      - tftp-server
+    state: present
+  become: yes
+  tags: install, tftp
+
+
+- name: Create TFTP Directory
+  file:
+    path: "{{ TFTP_DIR }}"
+    state: directory
+    owner: root
+    group: root
+  become: yes
+  tags: install, tftp
+
+- name: Configure TFTP service
+  template:
+    src:  tftp.service.j2
+    dest: /usr/lib/systemd/system/tftp.service
+  become: yes
+  tags: install, tftp
+
+- name: Start TFTP Server
+  service:
+    name: tftp
+    daemon_reload: yes
+    state: started
+    enabled: yes
+  become: yes
+  tags: install, tftp

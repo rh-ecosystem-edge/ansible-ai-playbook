@@ -1,0 +1,24 @@
+
+
+### TFTP SERVER
+TFTP_DIR: "/var/lib/tftpboot"
+
+### IPXE
+IPXE: false
+
+
+### HTTP SERVER
+HTTP_DIR: "/var/www/html/pxe"
+
+### ARCH
+# available option arm, x86
+ARCH: "arm"
+
+### DHCP Configuration 
+# DHCP:
+#   SUBNET:   192.168.1.0
+#   NETMASK:  255.255.255.0
+#   RANGE:    "192.168.1.1 192.168.1.10"
+#   DNS:      "8.8.8.8,4.2.2.2"
+#   GATEWAY:  192.168.1.254
+#   NTP:      time.google.com
