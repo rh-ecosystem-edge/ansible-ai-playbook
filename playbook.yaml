@@ -1,0 +1,9 @@
+---
+- hosts: all
+  roles:
+    - setup-pxe
+    - download-iso-pxe
+  vars:
+    ARCH: arm
+    URL: http://<URL>:<PORT>
+    CLUSTER_ID: "< CLUSTER UUID >" 
