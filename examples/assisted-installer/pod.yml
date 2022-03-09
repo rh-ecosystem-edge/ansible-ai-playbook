@@ -1,0 +1,46 @@
+# Reference: https://github.com/openshift/assisted-service/blob/master/deploy/podman/pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: "assisted-installer"
+  name:  "assisted-installer"
+spec:
+  containers:
+  - args:
+    - run-postgresql
+    image: "quay.io/centos7/postgresql-12-centos7:latest"
+    name: db
+    volumeMounts:
+    - mountPath: /var/lib/pgsql/data
+      name: db-volume
+    envFrom:
+    - configMapRef:
+        name: config
+  - image: "quay.io/jkilzi/assisted-installer-ui:arm_hack"
+    name: ui
+    ports:
+    - hostPort: 8080
+    envFrom:
+    - configMapRef:
+        name: config
+  - image: "quay.io/edge-infrastructure/assisted-image-service:latest"
+    name: image-service
+    ports:
+    - hostPort: 8888
+    envFrom:
+    - configMapRef:
+        name: config
+  - image: "quay.io/edge-infrastructure/assisted-service:latest"
+    name: service
+    ports:
+    - hostPort: 8090
+    envFrom:
+    - configMapRef:
+        name: config
+  restartPolicy: Always
+  volumes:
+  - name: db-volume
+    hostPath:
+      path: /home/assisted-podman/pg_data
+      type: Directory
