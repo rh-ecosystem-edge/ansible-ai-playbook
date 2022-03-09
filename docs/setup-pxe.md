@@ -4,7 +4,7 @@ This role is desgin to install basic service for PXE booting.
 Installing the following services  
 - HTTP server
 - TFTP server
-- DHCP server
+- DHCP server ( optional )
 
 
 ### **Requirements** 
