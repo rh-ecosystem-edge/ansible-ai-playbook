@@ -1,4 +1,4 @@
-# Ansible role Downlaod ISO to PXE
+# Ansible role Download ISO to PXE
 
 This role is for Asissted install day2 deployments.
 Giving an exsisting cluster, add's worker node via API
