@@ -1,7 +1,22 @@
 # Ansible Assisted Installer Playbooks
 
-This Playbook is for setting cluster into Day2 and setting UP PXE services and files.
-giving `Assisted installer` URL and cluster 
+This Playbook is for Transforming cluster into Day2 and setting up PXE services and files.
+giving `Assisted installer` URL and cluster UUID.
+
+
+> ❗ _Red Hat does not provide commercial support for the content of this repo.
+Any assistance is purely on a best-effort basis, as resource permits._
+
+```bash
+#############################################################################
+DISCLAIMER: THE CONTENT OF THIS REPO IS EXPERIMENTAL AND PROVIDED **"AS-IS"**
+
+THE CONTENT IS PROVIDED AS REFERENCE WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+#############################################################################
+```
+
 
 > note: After transfomation the UI will no longer shows the current cluster
 

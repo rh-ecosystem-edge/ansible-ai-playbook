@@ -7,24 +7,10 @@
   become: yes
   tags: dhcp
 
-- name: stop DHCP Server
-  service:
-    name: dhcpd
-    state: stopped
-  become: yes
-  tags: dhcp
-
 - name: Create DHCP config
   template:
     src: dhcpd.conf.j2
     dest: /etc/dhcp/dhcpd.conf
   become: yes
-  tags: dhcp
-
-- name: Start DHCP Server
-  service:
-    name: dhcpd
-    state: started
-    enabled: yes
-  become: yes
+  notify: Restart DHCP Server
   tags: dhcp

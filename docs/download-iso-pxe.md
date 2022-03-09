@@ -4,7 +4,7 @@ This role is for Asissted install day2 deployments.
 Giving an exsisting cluster, add's worker node via API
 
 This Role will transform the cluster to Day2 and will download and extract ISO into HTTP, TFTP folders.
-Generate `grub.cfg` accidentally
+Generate `grub.cfg` accordingly 
 
 > note: After transfomation the UI will no longer shows the current cluster
 
