@@ -1,3 +1,9 @@
+
+- name: set Assisted-installer URL v2
+  set_fact:
+    API_URL: "{{ URL }}/api/assisted-install/v2"
+  tags: extract
+
 - name: Extract files from a ISO to TFTP
   iso_extract:
     image:  "{{ WORKDIR }}/{{ ISO_NAME }}"
@@ -83,7 +89,7 @@
     return_content: yes
     status_code: "200"
   register: _infraenv_result
-
+  tags: extract
 
 - name: "[ full-iso ] Extract rootfs.img from a ISO"
   iso_extract:
@@ -93,6 +99,8 @@
     - images/pxeboot/rootfs.img
   become: yes
   when: _infraenv_result.json[0] | json_query('type') == "full-iso"
+  tags: extract
+
 
 - name: "Downloading rootfs.img"
   shell: |

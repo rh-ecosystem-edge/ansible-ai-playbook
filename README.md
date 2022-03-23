@@ -42,7 +42,7 @@ ansible-playbook -i <host>, playbook.yaml
 
 you can check add optional configurations which listed in the role Documentation 
 
-- [setup-pxe doc](./docs/download-iso-pxe.md)
-- [iso-to-pxe](./docs/setup-pxe.md)
+- [setup-pxe](./docs/setup-pxe.md)
+- [iso-to-pxe](./docs/download-iso-pxe.md)
 
 
