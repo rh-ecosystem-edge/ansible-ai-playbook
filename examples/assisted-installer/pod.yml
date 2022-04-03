@@ -31,7 +31,7 @@ spec:
     envFrom:
     - configMapRef:
         name: config
-  - image: "quay.io/edge-infrastructure/assisted-service:latest"
+  - image: "quay.io/edge-infrastructure/assisted-service:ocm-2.5"
     name: service
     ports:
     - hostPort: 8090
