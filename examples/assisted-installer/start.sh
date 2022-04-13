@@ -37,5 +37,9 @@ do
     curl -s "https://raw.githubusercontent.com/rh-ecosystem-edge/ansible-ai-playbook/main/examples/assisted-installer/${file}"  > ${WORKDIR}/${file}
 done
 
+IP_ADDRESS=$(hostname -I | awk '{ print $1}')
+
+sed -i "s|< HOST IP >|$IP_ADDRESS|g" ${WORKDIR}/configmap.yml
+
 echo "Starting Assisted installer"
 podman play kube --configmap "${WORKDIR}/configmap.yml" "${WORKDIR}/pod.yml"
