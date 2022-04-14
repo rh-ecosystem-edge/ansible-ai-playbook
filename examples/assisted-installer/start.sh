@@ -7,7 +7,7 @@ WORKDIR="/home/assisted-podman"
 VOLUME_PATH="${WORKDIR}/pg_data"
 
 echo "Creating data base folder at: ${VOLUME_PATH}..."
-mkdir -p ${VOLUME_PATH} 
+mkdir -p ${VOLUME_PATH}  &&  chmod 0777  ${VOLUME_PATH}
 
 for package in "jq" "podman"
 do 
