@@ -6,7 +6,7 @@ set -o nounset
 WORKDIR="/home/assisted-podman"
 VOLUME_PATH="${WORKDIR}/pg_data"
 
-echo "Creating data base folder at: ${VOLUME_PATH}..."
+echo "Creating database folder at: ${VOLUME_PATH}..."
 mkdir -p ${VOLUME_PATH}  &&  chmod 0777  ${VOLUME_PATH}
 
 for package in "jq" "podman"
@@ -28,7 +28,6 @@ then
     echo "ERROR: podman require minimum version of 3.3"
     exit 1
 fi
-
 
 echo "Getting Config files"
 

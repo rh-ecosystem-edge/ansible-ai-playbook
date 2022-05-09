@@ -12,7 +12,7 @@ spec:
     image: "quay.io/centos7/postgresql-12-centos7:latest"
     name: db
     volumeMounts:
-    - mountPath: /var/lib/pgsql/data
+    - mountPath: /var/lib/pgsql/data:z
       name: db-volume
     envFrom:
     - configMapRef:
