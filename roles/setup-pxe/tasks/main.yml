@@ -6,7 +6,7 @@
 - name: install tftp services
   include_tasks: tftp.yml
   tags: install, tftp
-  when: IPXE is false
+  when: IPXE is defined
 
 - name: install DHCP service
   include_tasks: dhcp.yml
