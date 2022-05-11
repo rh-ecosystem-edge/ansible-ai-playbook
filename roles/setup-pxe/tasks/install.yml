@@ -7,6 +7,7 @@
       - httpd
     state: present
   become: yes
+  tags: install
 
 - name: Create HTTP Directory
   file:
@@ -15,13 +16,15 @@
     owner: apache
     group: apache
   become: yes
-
+  tags: install
+  
 - name: setup iPXE config
   template:
     src: ipxe.j2
     dest: "{{ HTTP_DIR }}/ipxe"
   become: yes
   when: IPXE is true
+  tags: install
 
 
 - name: Create HTTP PXE config file
@@ -31,10 +34,13 @@
     owner: apache
     group: apache
   become: yes
-
+  tags: install
+  
 - name: Restart http Server
   service:
     name: httpd
     state: reloaded
     enabled: yes
   become: yes
+  tags: install
+  
