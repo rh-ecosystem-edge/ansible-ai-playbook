@@ -18,13 +18,13 @@
   become: yes
   tags: install
   
-- name: setup iPXE config
-  template:
-    src: ipxe.j2
-    dest: "{{ HTTP_DIR }}/ipxe"
-  become: yes
-  when: IPXE is defined
-  tags: install
+#- name: setup iPXE config
+#  template:
+#    src: ipxe.j2
+#    dest: "{{ HTTP_DIR }}/ipxe"
+#  become: yes
+#  when: IPXE is defined
+#  tags: install
 
 
 - name: Create HTTP PXE config file
