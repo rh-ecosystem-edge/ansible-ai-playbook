@@ -23,7 +23,7 @@
     src: ipxe.j2
     dest: "{{ HTTP_DIR }}/ipxe"
   become: yes
-  when: IPXE is true
+  when: IPXE is defined
   tags: install
 
 
