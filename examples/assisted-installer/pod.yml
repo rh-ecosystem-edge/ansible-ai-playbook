@@ -17,7 +17,7 @@ spec:
     envFrom:
     - configMapRef:
         name: config
-  - image: "quay.io/jkilzi/assisted-installer-ui:arm_hack"
+  - image: "quay.io/edge-infrastructure/assisted-installer-ui:latest"
     name: ui
     ports:
     - hostPort: 8080
@@ -31,7 +31,7 @@ spec:
     envFrom:
     - configMapRef:
         name: config
-  - image: "quay.io/edge-infrastructure/assisted-service:ocm-2.5"
+  - image: "quay.io/edge-infrastructure/assisted-service:latest"
     name: service
     ports:
     - hostPort: 8090
